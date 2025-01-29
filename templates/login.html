@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Book Bazaar</h1>
+        <h5>Simplifying Book Purchase</h5>
+        <h1>Login</h1>
+
+        <!-- Login Form -->
+        <form id="login-form">
+            <label for="name">Enter your Name</label>
+            <input type="text" id="name" name="name" placeholder="Please enter your full name" required>
+
+            <label for="dob">Enter your date of birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="phone">Enter your phone number</label>
+            <input type="number" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <!-- Login Button -->
+            <button type="button" id="login-button">Login</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+
+    <script>
+        // JavaScript to handle login redirection
+        document.getElementById('login-button').addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const dob = document.getElementById('dob').value;
+            const phone = document.getElementById('phone').value;
+
+            if (name && dob && phone) {
+                // Redirect to cart_page.html if all fields are filled
+                window.location.href = 'cart_page.html';
+            } else {
+                // Alert the user if any field is missing
+                alert('Please fill in all the fields before logging in.');
+            }
+        });
+    </script>
+</body>
+
+
+</html>

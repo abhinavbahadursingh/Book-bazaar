@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 120px);
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+        .btn-complete {
+            background-color: #007bff;
+            color: #ffffff;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-complete:hover {
+            background-color: #0056b3;
+        }
+
+        .cart {
+            margin-top: 20px;
+        }
+
+        .cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart li {
+            background: #f8f9fa;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Cart</h1>
+        <div>
+            <input type="text" id="bookInput" placeholder="Enter book name">
+            <button class="btn-add" onclick="addBook()">Add Book</button>
+        </div>
+        <div class="cart">
+            <h3>Books in Cart:</h3>
+            <ul id="bookList"></ul>
+        </div>
+        <button class="btn-complete" onclick="completePurchase()">Complete Purchase</button>
+    </div>
+
+    <script>
+        const bookList = [];
+
+        // Function to add a book to the cart
+        function addBook() {
+            const bookInput = document.getElementById('bookInput');
+            const bookName = bookInput.value.trim();
+
+            if (bookName) {
+                bookList.push(bookName); // Add the book to the list
+                updateCart(); // Update the UI
+                bookInput.value = ''; // Clear the input field
+            } else {
+                alert('Please enter a valid book name.');
+            }
+        }
+
+        // Function to update the cart display
+        function updateCart() {
+            const bookListElement = document.getElementById('bookList');
+            bookListElement.innerHTML = ''; // Clear the current list
+
+            bookList.forEach((book, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${book}`;
+                bookListElement.appendChild(li);
+            });
+        }
+
+        // Function to handle the "Complete Purchase" button click
+        function completePurchase() {
+            if (bookList.length > 0) {
+                alert(`Purchase Complete! You bought:\n- ${bookList.join('\n- ')}`);
+                bookList.length = 0; // Clear the list
+                updateCart(); // Refresh the UI
+            } else {
+                alert('Your cart is empty!');
+            }
+        }
+    </script>
+</body>
+</html>
